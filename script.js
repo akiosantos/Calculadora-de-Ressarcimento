@@ -26,7 +26,7 @@ function formatarFaturamentoTotal() {
 }
 
 // Chama a função formatarFaturamentoTotal() sempre que o usuário digitar algo
-document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
+document.getElementById("faturamento-total").addEventListener("blur", formatarFaturamentoTotal);
 
 // Função para calcular o ressarcimento
 function calcularRessarcimento() {
