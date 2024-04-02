@@ -6,20 +6,25 @@ function formatarFaturamentoTotal() {
 // Remover todos os pontos e vírgulas
   valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
-  // Adicionar vírgula antes dos últimos 2 dígitos
-  if (valor.length >= 2) {
-    valor = valor.slice(0, -2) + ',' + valor.slice(-2);
-  } else if (valor.length === 1) {
-    valor = '0,0' + valor;
-  } else if (valor.length === 0) {
-    valor = '0,00' + valor;
+  // Verificar se o valor está vazio ou não é um número
+  if (valor === '' || isNaN(parseFloat(valor))) {
+    valor = '0';
   }
   
 // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
+    // Adicionar vírgula e zeros caso necessário
+  if (valor.includes(',')) {
+    var partes = valor.split(',');
+    partes[1] = partes[1].padEnd(2, '0');
+    valor = partes.join(',');
+  } else {
+    valor += ',00';
+  }
+
   // Atualizar o valor no campo, removendo espaços extras no início
-  faturamentoTotalInput.value = "R$ " + valor.trim();
+  faturamentoTotalInput.value = "R$ " + valor;
 
   // Chamar a função para calcular o ressarcimento
   calcularRessarcimento();
