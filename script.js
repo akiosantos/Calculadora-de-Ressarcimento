@@ -7,7 +7,7 @@ function formatarFaturamentoTotal() {
   valor = valor.replace(/[.,\s]/g, '');
 
 // Se o valor for um número inteiro, adicione duas casas decimais
-  if (!valor.includes('.')) {
+  if (!valor.includes(',')) {
     valor += '.00';
   } 
 
