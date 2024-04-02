@@ -17,7 +17,7 @@ function formatarFaturamentoTotal() {
   } 
 
   // Adicionar vírgula antes dos últimos 2 dígitos
-  if (valor.length >= 2) {
+  if (valor.length > 2) {
     valor = valor.slice(0, -2) + ',' + valor.slice(-2);
   } else if (valor.length === 2) {
     valor = '0,' + valor;
