@@ -5,25 +5,24 @@ function formatarFaturamentoTotal() {
   // Remover todos os pontos e vírgulas
   valor = valor.replace(/[.,]/g, '');
 
-  // Formatar o valor com o ponto como separador de milhares
-  var valorFormatado = formatarValor(valor);
+  // Converter para número
+  var faturamentoTotal = parseFloat(valor);
+
+  if (isNaN(faturamentoTotal)) {
+    alert("Por favor, insira um valor válido para o Faturamento Total.");
+    return;
+  }
+
+  // Formatar o valor com ponto como separador de milhares e adicionar o símbolo de "R$"
+  var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  // Adicionar ponto a cada 3 dígitos
+  valorFormatado = valorFormatado.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
   // Atualizar o valor no campo
-  faturamentoTotalInput.value = valorFormatado;
+  faturamentoTotalInput.value = "R$" + valorFormatado;
 }
 
-
-    if (isNaN(faturamentoTotal)) {
-        alert("Por favor, insira um valor válido para o Faturamento Total.");
-        return;
-    }
-
-    // Formatar o valor com o ponto como separador de milhares e adicionar o símbolo de "R$"
-    var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-    // Atualizar o valor no campo
-    faturamentoTotalInput.value = "R$" + valorFormatado;
-}
 
 function calcularRessarcimento() {
     // Chama a função formatarFaturamentoTotal() para formatar o valor corretamente
