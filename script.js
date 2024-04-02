@@ -14,34 +14,26 @@ function formatarFaturamentoTotal() {
     // Se o valor for um número inteiro, adicione duas casas decimais
   if (!valor.includes('.')) {
     valor += '.00';
-  }
-
-  // Adicionar vírgula antes dos últimos 2 dígitos
-  if (valor.length >= 2) {
-    valor = valor.slice(0, -2) + ',' + valor.slice(-2);
-  } else if (valor.length === 1) {
-    valor = '0,0' + valor;
-  } else if (valor.length === 0) {
-    valor = '0,00' + valor;
-  }
-
-  // Se o valor for um número inteiro, adicione duas casas decimais
-  if (!valor.includes('.')) {
-    valor += '.00';
-  } else { // Se for um número decimal, garanta que haja duas casas decimais
+  }  else { // Se for um número decimal, garanta que haja duas casas decimais
     var partes = valor.split('.');
     if (partes[1].length === 1) {
       valor += '0';
     }
   }
+
+  // Adicionar vírgula antes dos últimos 2 dígitos
+  if (valor.length >= 3) {
+    valor = valor.slice(0, -2) + ',' + valor.slice(-2);
+  } else if (valor.length === 2) {
+    valor = '0,' + valor;
+  } else if (valor.length === 1) {
+    valor = '0,0' + valor;
+  } else if (valor.length === 0) {
+    valor = '0,00' + valor;
+  }
   
 // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-    // Se não houver vírgula no valor, adicione duas casas decimais
-  if (!valor.includes(',')) {
-    valor += ',00';
-  }
 
   // Atualizar o valor no campo, removendo espaços extras no início
   faturamentoTotalInput.value = "R$ " + valor.trim();
