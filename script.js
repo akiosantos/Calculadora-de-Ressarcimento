@@ -16,15 +16,12 @@ function formatarFaturamentoTotal() {
 }
 
 function calcularRessarcimento() {
+    // Chama a função formatarFaturamentoTotal() para formatar o valor corretamente
+    formatarFaturamentoTotal();
+
     var faturamentoTotalInput = document.getElementById("faturamento-total");
     var faturamentoTotalValue = faturamentoTotalInput.value.trim().replace('R$', '').trim();
     
-    // Remover quaisquer caracteres não numéricos (exceto ponto)
-    faturamentoTotalValue = faturamentoTotalValue.replace(/[^\d.]/g, '');
-
-    // Substituir a vírgula por ponto
-    faturamentoTotalValue = faturamentoTotalValue.replace(',', '.');
-
     // Converter para número
     var faturamentoTotal = parseFloat(faturamentoTotalValue);
 
