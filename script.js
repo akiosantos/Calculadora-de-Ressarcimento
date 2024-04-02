@@ -6,8 +6,6 @@ function formatarFaturamentoTotal() {
 // Remover todos os pontos e espaços
   valor = valor.replace(/[.,\s]/g, '');
 
-
-
   // Adicionar vírgula antes dos últimos 2 dígitos
   if (valor.length > 2) {
     valor = valor.slice(0, -2) + ',' + valor.slice(-2);
@@ -18,6 +16,16 @@ function formatarFaturamentoTotal() {
   } else {
     valor = '0,00';
   }
+
+//com R$
+var f = atual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+//sem R$
+var f2 = atual.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+console.log(f);
+console.log(f2);
+  
   
 // Adicionar ponto a cada 3 dígitos
 valor = valor.replace(/(\d)(?=(?:\d{3})+(?!\.?))/g, '$1.');
