@@ -12,10 +12,6 @@ function formatarFaturamentoTotal() {
     return;
   }
 
-var faturamentoTotalInput = document.getElementById("faturamento-total");
-faturamentoTotalInput.oninput = formatarFaturamentoTotal;
-
-
   // Formatar o valor com ponto como separador de milhares
   var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -51,5 +47,5 @@ function calcularRessarcimento() {
     // Formatar o resultado sem arredondamento
     var saldoMedioFormatado = saldoMedio.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-    document.getElementById("resultado").innerText = "O saldo médio é: R$" + saldoMedioFormatado;
+    document.getElementById("resultado").innerText = "O saldo médio é: R$ " + saldoMedioFormatado;
 }
