@@ -25,5 +25,5 @@ function calcularRessarcimento() {
     // Formatando o resultado em reais (R$)
     var saldoMedioFormatado = saldoMedio.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-    document.getElementById("resultado").innerText = "O saldo médio é: " + saldoMedioFormatado;
+    document.getElementById("resultado").innerText = "O saldo médio é: R$" + saldoMedioFormatado;
 }
