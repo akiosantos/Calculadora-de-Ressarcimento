@@ -17,6 +17,10 @@ function formatarFaturamentoTotal() {
   } else if (valor.length === 1) {
     valor = '0,0' + valor;
   }
+
+
+    // Inverter novamente para obter o formato desejado
+  valor = valor.split('').reverse().join('');7
   
 // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
