@@ -5,6 +5,9 @@ function formatarFaturamentoTotal() {
     // Remover caracteres não numéricos, exceto ponto
     valor = valor.replace(/[^\d.]/g, '');
 
+    // Remover todos os pontos
+    valor = valor.replace(/\./g, '');
+
     // Adicionar ponto como separador de milhares
     valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
