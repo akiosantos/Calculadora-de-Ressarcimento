@@ -1,4 +1,7 @@
-function formatarNumero(valor) {
+function formatarFaturamentoTotal() {
+    var faturamentoTotalInput = document.getElementById("faturamento-total");
+    var valor = faturamentoTotalInput.value;
+
     // Remover todos os caracteres não numéricos, exceto ponto
     valor = valor.replace(/[^\d.]/g, '');
 
@@ -7,16 +10,6 @@ function formatarNumero(valor) {
 
     // Substituir a vírgula por ponto
     valor = valor.replace(',', '.');
-
-    return valor;
-}
-
-function formatarFaturamentoTotal() {
-    var faturamentoTotalInput = document.getElementById("faturamento-total");
-    var valor = faturamentoTotalInput.value;
-
-    // Formatar o valor enquanto o usuário digita
-    valor = formatarNumero(valor);
 
     // Atualizar o valor no campo
     faturamentoTotalInput.value = valor;
@@ -27,7 +20,10 @@ function calcularRessarcimento() {
     var faturamentoTotalValue = faturamentoTotalInput.value.trim().replace('R$', '').trim();
     
     // Remover quaisquer caracteres não numéricos (exceto ponto)
-    faturamentoTotalValue = formatarNumero(faturamentoTotalValue);
+    faturamentoTotalValue = faturamentoTotalValue.replace(/[^\d.]/g, '');
+
+    // Substituir a vírgula por ponto
+    faturamentoTotalValue = faturamentoTotalValue.replace(',', '.');
 
     // Converter para número
     var faturamentoTotal = parseFloat(faturamentoTotalValue);
@@ -43,7 +39,4 @@ function calcularRessarcimento() {
     var saldoMedio = baseCalculo * meses;
 
     // Formatando o resultado em reais (R$)
-    var saldoMedioFormatado = saldoMedio.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-
-    document.getElementById("resultado").innerText = "O saldo médio é: " + saldoMedioFormatado;
-}
+    
