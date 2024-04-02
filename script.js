@@ -35,6 +35,11 @@ function calcularRessarcimento() {
   var meses = parseInt(document.getElementById("meses").value);
 
   var baseCalculo = faturamentoTotal * 0.012;
+  
+    // Atualizar o elemento HTML com o valor da base de cálculo
+    document.getElementById("base-calculo").innerText = "Base de Cálculo: R$ " + baseCalculo.toFixed(2);
+
+  
   var saldoMedio = (baseCalculo * meses) - 0.20; // Subtrai 20%
 
   // Formatar o resultado sem arredondamento
