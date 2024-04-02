@@ -59,7 +59,7 @@ function calcularRessarcimento() {
   
 
 // Formatar a base de cálculo com pontos a cada 3 dígitos
-  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 
   // Atualizar o elemento HTML com o valor da base de cálculo formatado
