@@ -2,6 +2,9 @@ function formatarFaturamentoTotal() {
     var faturamentoTotalInput = document.getElementById("faturamento-total");
     var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
     
+    // Remover todos os pontos e vírgulas
+    valor = valor.replace(/[.,]/g, '');
+    
     // Converter para número
     var faturamentoTotal = parseFloat(valor);
 
