@@ -22,5 +22,8 @@ function calcularRessarcimento() {
     var honorarios = baseCalculo * 0.20;
     var saldoMedio = (baseCalculo * meses) - honorarios;
 
-    document.getElementById("resultado").innerText = "O saldo médio é: R$" + saldoMedio.toFixed(2);
+    // Formatando o resultado em reais (R$)
+    var saldoMedioFormatado = saldoMedio.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    document.getElementById("resultado").innerText = "O saldo médio é: " + saldoMedioFormatado;
 }
