@@ -3,10 +3,10 @@ function formatarFaturamentoTotal() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
   var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
 
-// Remover todos os pontos e vírgulas
-  valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
+// Remover todos os pontos e espaços
+  valor = valor.replace(/[.,\s]/g, '');
 
-    // Se o valor incluir uma vírgula, substitua por um ponto para garantir que seja considerado como um número decimal
+// Se o valor incluir uma vírgula, substitua por um ponto para garantir que seja considerado como um número decimal
   if (valor.includes(',')) {
     valor = valor.replace(',', '.');
   }
@@ -23,6 +23,16 @@ function formatarFaturamentoTotal() {
     valor = '0,0' + valor;
   } else if (valor.length === 0) {
     valor = '0,00' + valor;
+  }
+
+  // Se o valor for um número inteiro, adicione duas casas decimais
+  if (!valor.includes('.')) {
+    valor += '.00';
+  } else { // Se for um número decimal, garanta que haja duas casas decimais
+    var partes = valor.split('.');
+    if (partes[1].length === 1) {
+      valor += '0';
+    }
   }
   
 // Adicionar ponto a cada 3 dígitos
