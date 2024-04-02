@@ -2,16 +2,14 @@ function formatarFaturamentoTotal() {
     var faturamentoTotalInput = document.getElementById("faturamento-total");
     var valor = faturamentoTotalInput.value;
 
-    // Remover todos os caracteres não numéricos, exceto ponto
+    // Remover caracteres não numéricos, exceto ponto
     valor = valor.replace(/[^\d.]/g, '');
 
     // Adicionar ponto como separador de milhares
-    var partes = valor.split('.');
-    var parteInteira = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    var parteDecimal = partes.length > 1 ? '.' + partes[1] : '';
+    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
     // Atualizar o valor no campo
-    faturamentoTotalInput.value = parteInteira + parteDecimal;
+    faturamentoTotalInput.value = valor;
 }
 
 function calcularRessarcimento() {
