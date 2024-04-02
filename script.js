@@ -23,7 +23,7 @@ faturamentoTotalInput.oninput = formatarFaturamentoTotal;
   valorFormatado = valorFormatado.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
   // Atualizar o valor no campo
-  faturamentoTotalInput.value = "R$" + valorFormatado;
+  faturamentoTotalInput.value = "R$ " + valorFormatado;
 }
 
 
