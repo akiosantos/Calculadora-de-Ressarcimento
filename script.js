@@ -1,12 +1,17 @@
 function formatarFaturamentoTotal() {
-    var faturamentoTotalInput = document.getElementById("faturamento-total");
-    var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
-    
-    // Remover todos os pontos e vírgulas
-    valor = valor.replace(/[.,]/g, '');
-    
-    // Converter para número
-    var faturamentoTotal = parseFloat(valor);
+  var faturamentoTotalInput = document.getElementById("faturamento-total");
+  var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
+
+  // Remover todos os pontos e vírgulas
+  valor = valor.replace(/[.,]/g, '');
+
+  // Formatar o valor com o ponto como separador de milhares
+  var valorFormatado = formatarValor(valor);
+
+  // Atualizar o valor no campo
+  faturamentoTotalInput.value = valorFormatado;
+}
+
 
     if (isNaN(faturamentoTotal)) {
         alert("Por favor, insira um valor válido para o Faturamento Total.");
