@@ -3,8 +3,8 @@ function formatarFaturamentoTotal() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
   var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
 
-  // Remover todos os pontos e vírgulas
-  valor = valor.replace(/[.,]/g, '');
+// Remover todos os pontos e vírgulas
+  valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
   // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
