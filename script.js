@@ -7,11 +7,17 @@ function formatarValor(valor) {
     var parteInteira = partes[0];
     var parteDecimal = partes.length > 1 ? '.' + partes[1] : '';
 
-    // Adicionar ponto como separador de milhares a cada três dígitos na parte inteira
-    parteInteira = parteInteira.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // Adicionar ponto como separador de milhares a cada três dígitos na parte inteira, começando do final
+    var parteInteiraFormatada = '';
+    for (var i = parteInteira.length - 1, j = 0; i >= 0; i--, j++) {
+        parteInteiraFormatada = parteInteira.charAt(i) + parteInteiraFormatada;
+        if (j > 0 && j % 3 === 0 && i > 0) {
+            parteInteiraFormatada = '.' + parteInteiraFormatada;
+        }
+    }
 
     // Retornar o valor formatado
-    return parteInteira + parteDecimal;
+    return parteInteiraFormatada + parteDecimal;
 }
 
 function formatarFaturamentoTotal() {
@@ -42,15 +48,4 @@ function calcularRessarcimento() {
 
     var meses = parseInt(document.getElementById("meses").value);
 
-    var baseCalculo = faturamentoTotal * 0.012;
-    var saldoMedio = (baseCalculo * meses) - 0.20; // Subtrai 20%
-
-    // Formatar o resultado sem arredondamento
-    var saldoMedioFormatado = saldoMedio.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-    document.getElementById("resultado").innerText = "O saldo médio é: R$" + saldoMedioFormatado;
-}
-
-// Adicionar um ouvinte de evento de entrada para o campo "Faturamento Total"
-var faturamentoTotalInput = document.getElementById("faturamento-total");
-faturamentoTotalInput.addEventListener("input", formatarFaturamentoTotal);
+    var baseC
