@@ -9,8 +9,8 @@ function formatarFaturamentoTotal() {
   // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-  // Atualizar o valor no campo
-  faturamentoTotalInput.value = "R$ " + valor;
+  // Atualizar o valor no campo, removendo espaços extras no início
+  faturamentoTotalInput.value = "R$ " + valor.trimStart();
 
   // Chamar a função para calcular o ressarcimento
   calcularRessarcimento();
