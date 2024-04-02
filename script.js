@@ -28,7 +28,7 @@ function formatarFaturamentoTotal() {
   }
   
 // Adicionar ponto a cada 3 dígitos
-  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+valor = valor.replace(/(\d)(?=(\d{3})+(?!\d|\.))?/g, '$1.');
 
   // Atualizar o valor no campo
   faturamentoTotalInput.value = "R$ " + valor;
