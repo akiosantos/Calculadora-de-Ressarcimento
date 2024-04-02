@@ -6,10 +6,7 @@ function formatarFaturamentoTotal() {
 // Remover todos os pontos e espaços
   valor = valor.replace(/[.,\s]/g, '');
 
-// Se o valor for um número inteiro, adicione duas casas decimais
-  if (!valor.includes(',')) {
-    valor += '.00';
-  } 
+
 
   // Adicionar vírgula antes dos últimos 2 dígitos
   if (valor.length > 2) {
