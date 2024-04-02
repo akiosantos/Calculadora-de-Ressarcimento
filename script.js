@@ -4,7 +4,7 @@ function formatarFaturamentoTotal() {
   var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
 
 // Remover todos os pontos e espaços
-  valor = valor.replace(/[.,\s]/g, '');
+  valor = valor.replace(/[,\s]/g, '');
 
 // Se o valor incluir uma vírgula, substitua por um ponto para garantir que seja considerado como um número decimal
   if (valor.includes(',')) {
