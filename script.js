@@ -5,32 +5,23 @@ function formatarFaturamentoTotal() {
   // Remover todos os pontos e vírgulas
   valor = valor.replace(/[.,]/g, '');
 
-  // Converter para número
-  var faturamentoTotal = parseFloat(valor);
-
-  if (isNaN(faturamentoTotal)) {
-    return;
-  }
-
-  // Formatar o valor com ponto como separador de milhares
-  var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
   // Adicionar ponto a cada 3 dígitos
-  valorFormatado = valorFormatado.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
   // Atualizar o valor no campo
-  faturamentoTotalInput.value = "R$ " + valorFormatado;
+  faturamentoTotalInput.value = "R$ " + valor;
 }
 
-
+// Chama a função formatarFaturamentoTotal() sempre que o usuário digitar algo
+document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
 
 function calcularRessarcimento() {
-    // Chama a função formatarFaturamentoTotal() para formatar o valor corretamente
-    formatarFaturamentoTotal();
+  // Chama a função formatarFaturamentoTotal() para formatar o valor corretamente
+  formatarFaturamentoTotal();
 
-    var faturamentoTotalInput = document.getElementById("faturamento-total");
-    var faturamentoTotalValue = faturamentoTotalInput.value.trim().replace('R$', '').replace(/\./g, '').trim();
-    
+  var faturamentoTotalInput = document.getElementById("faturamento-total");
+  var faturamentoTotalValue = faturamentoTotalInput.value.trim().replace('R$', '').replace(/\./g, '').trim();
+  
     // Converter para número
     var faturamentoTotal = parseFloat(faturamentoTotalValue);
 
