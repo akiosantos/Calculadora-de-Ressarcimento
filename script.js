@@ -38,5 +38,8 @@ function calcularRessarcimento() {
     var baseCalculo = faturamentoTotal * 0.012;
     var saldoMedio = baseCalculo * meses;
 
-    // Formatando o resultado em reais (R$)
-    
+    // Formatar o resultado sem arredondamento
+    var saldoMedioFormatado = saldoMedio.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    document.getElementById("resultado").innerText = "O saldo médio é: R$" + saldoMedioFormatado;
+}
