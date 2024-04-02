@@ -2,11 +2,8 @@ function formatarFaturamentoTotal() {
     var faturamentoTotalInput = document.getElementById("faturamento-total");
     var valor = faturamentoTotalInput.value;
 
-    // Remover todos os caracteres não numéricos, exceto ponto
+    // Remover todos os caracteres não numéricos, exceto ponto e números
     valor = valor.replace(/[^\d.]/g, '');
-
-    // Remover todos os pontos, exceto o último
-    valor = valor.replace(/\.(?=.*\.)/g, '');
 
     // Substituir a vírgula por ponto
     valor = valor.replace(',', '.');
