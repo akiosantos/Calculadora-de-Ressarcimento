@@ -1,14 +1,3 @@
-function adicionarSeparadorDecimal(valor) {
-    // Adicionar ponto para separar decimal se ainda não houver
-    if (valor.indexOf('.') === -1) {
-        // Verifica se o valor está vazio ou se o último caractere é um número
-        if (valor === '' || !isNaN(valor.slice(-1))) {
-            valor += '.';
-        }
-    }
-    return valor;
-}
-
 function formatarFaturamentoTotal() {
     var faturamentoTotalInput = document.getElementById("faturamento-total");
     var valor = faturamentoTotalInput.value;
@@ -16,12 +5,18 @@ function formatarFaturamentoTotal() {
     // Remover todos os caracteres não numéricos, exceto ponto
     valor = valor.replace(/[^\d.]/g, '');
 
-    // Adicionar ponto para separar o decimal se necessário
-    valor = adicionarSeparadorDecimal(valor);
+    // Verificar se o valor já contém um ponto decimal
+    var temPontoDecimal = valor.indexOf('.') !== -1;
+
+    // Se não houver ponto decimal, adicionar automaticamente no final do número
+    if (!temPontoDecimal && valor !== '') {
+        valor += '.';
+    }
 
     // Atualizar o valor no campo
     faturamentoTotalInput.value = valor;
 }
+
 
 function calcularRessarcimento() {
     // Chama a função formatarFaturamentoTotal() para formatar o valor corretamente
