@@ -1,20 +1,20 @@
 function formatarFaturamentoTotal() {
     var faturamentoTotalInput = document.getElementById("faturamento-total");
-    var valor = faturamentoTotalInput.value;
+    var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
+    
+    // Converter para número
+    var faturamentoTotal = parseFloat(valor);
 
-    // Remover caracteres não numéricos, exceto ponto
-    valor = valor.replace(/[^\d.]/g, '');
+    if (isNaN(faturamentoTotal)) {
+        alert("Por favor, insira um valor válido para o Faturamento Total.");
+        return;
+    }
 
-    // Separar a parte inteira da parte decimal (se existir)
-    var partes = valor.split('.');
-    var parteInteira = partes[0];
-    var parteDecimal = partes.length > 1 ? '.' + partes[1] : '';
-
-    // Adicionar ponto como separador de milhares em todos os dígitos
-    var parteInteiraFormatada = parteInteira.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // Formatar o valor com o ponto como separador de milhares e adicionar o símbolo de "R$"
+    var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     // Atualizar o valor no campo
-    faturamentoTotalInput.value = parteInteiraFormatada + parteDecimal;
+    faturamentoTotalInput.value = "R$" + valorFormatado;
 }
 
 function calcularRessarcimento() {
@@ -42,7 +42,3 @@ function calcularRessarcimento() {
 
     document.getElementById("resultado").innerText = "O saldo médio é: R$" + saldoMedioFormatado;
 }
-
-// Adicionar um ouvinte de evento de entrada para o campo "Faturamento Total"
-var faturamentoTotalInput = document.getElementById("faturamento-total");
-faturamentoTotalInput.addEventListener("input", formatarFaturamentoTotal);
