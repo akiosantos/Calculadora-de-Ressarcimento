@@ -12,6 +12,10 @@ function formatarFaturamentoTotal() {
     return;
   }
 
+  // Atribuir a função `formatarFaturamentoTotal` ao evento `oninput` do campo "faturamento-total"
+document.getElementById("faturamento-total").oninput = formatarFaturamentoTotal;
+
+
   // Formatar o valor com ponto como separador de milhares
   var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
