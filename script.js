@@ -6,9 +6,13 @@ function formatarFaturamentoTotal() {
 // Remover todos os pontos e vírgulas
   valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
-// Adicionar vírgula antes dos últimos 2 dígitos
+  // Adicionar vírgula antes dos últimos 2 dígitos
   if (valor.length > 2) {
     valor = valor.slice(0, -2) + ',' + valor.slice(-2);
+  } else if (valor.length === 2) {
+    valor = '0,' + valor;
+  } else if (valor.length === 1) {
+    valor = '0,0' + valor;
   }
   
 // Adicionar ponto a cada 3 dígitos
