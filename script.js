@@ -9,11 +9,10 @@ function formatarFaturamentoTotal() {
   var faturamentoTotal = parseFloat(valor);
 
   if (isNaN(faturamentoTotal)) {
-    alert("Por favor, insira um valor válido para o Faturamento Total.");
     return;
   }
 
-  // Formatar o valor com ponto como separador de milhares e adicionar o símbolo de "R$"
+  // Formatar o valor com ponto como separador de milhares
   var valorFormatado = faturamentoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   // Adicionar ponto a cada 3 dígitos
@@ -22,6 +21,7 @@ function formatarFaturamentoTotal() {
   // Atualizar o valor no campo
   faturamentoTotalInput.value = "R$" + valorFormatado;
 }
+
 
 
 function calcularRessarcimento() {
