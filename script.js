@@ -6,6 +6,11 @@ function formatarFaturamentoTotal() {
 // Remover todos os pontos e vírgulas
   valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
+    // Se o valor incluir uma vírgula, substitua por um ponto para garantir que seja considerado como um número decimal
+  if (valor.includes(',')) {
+    valor = valor.replace(',', '.');
+  }
+
   // Adicionar vírgula antes dos últimos 2 dígitos
   if (valor.length >= 2) {
     valor = valor.slice(0, -2) + ',' + valor.slice(-2);
@@ -17,6 +22,11 @@ function formatarFaturamentoTotal() {
   
 // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+    // Se não houver vírgula no valor, adicione duas casas decimais
+  if (!valor.includes(',')) {
+    valor += ',00';
+  }
 
   // Atualizar o valor no campo, removendo espaços extras no início
   faturamentoTotalInput.value = "R$ " + valor.trim();
