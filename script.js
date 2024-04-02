@@ -19,7 +19,7 @@ function formatarFaturamentoTotal() {
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
   // Atualizar o valor no campo, removendo espaços extras no início
-  faturamentoTotalInput.value = "R$ " + valor.trimStart();
+  faturamentoTotalInput.value = "R$ " + valor.trim();
 
   // Chamar a função para calcular o ressarcimento
   calcularRessarcimento();
