@@ -11,6 +11,11 @@ function formatarFaturamentoTotal() {
     valor = valor.replace(',', '.');
   }
 
+    // Se o valor for um número inteiro, adicione duas casas decimais
+  if (!valor.includes('.')) {
+    valor += '.00';
+  }
+
   // Adicionar vírgula antes dos últimos 2 dígitos
   if (valor.length >= 2) {
     valor = valor.slice(0, -2) + ',' + valor.slice(-2);
