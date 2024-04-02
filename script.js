@@ -1,12 +1,23 @@
+function adicionarSeparadorDecimal(valor) {
+    // Adicionar ponto para separar decimal se ainda não houver
+    if (valor.indexOf('.') === -1) {
+        // Verifica se o valor está vazio ou se o último caractere é um número
+        if (valor === '' || !isNaN(valor.slice(-1))) {
+            valor += '.';
+        }
+    }
+    return valor;
+}
+
 function formatarFaturamentoTotal() {
     var faturamentoTotalInput = document.getElementById("faturamento-total");
     var valor = faturamentoTotalInput.value;
 
-    // Remover todos os caracteres não numéricos, exceto ponto e números
+    // Remover todos os caracteres não numéricos, exceto ponto
     valor = valor.replace(/[^\d.]/g, '');
 
-    // Substituir a vírgula por ponto
-    valor = valor.replace(',', '.');
+    // Adicionar ponto para separar o decimal se necessário
+    valor = adicionarSeparadorDecimal(valor);
 
     // Atualizar o valor no campo
     faturamentoTotalInput.value = valor;
