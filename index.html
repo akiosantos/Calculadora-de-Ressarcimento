@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Ressarcimento</title>
+    <title>Calculadora do Ressarcimento</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator">
-        <h2>Calculadora de Ressarcimento</h2>
+        <h2>Calculadora do Ressarcimento</h2>
         <form id="calc-form">
-            <label for="faturamento-total">Faturamento Total (R$):</label>
+            <label for="faturamento-total">Faturamento de todas as lojas (mensal):</label>
             <input type="text" id="faturamento-total" placeholder="Digite o valor em reais" required>
             <br>
-            <label for="meses">Quantos Meses:</label>
+            <label for="meses">Quantos Meses fora do ROT-ST:</label>
             <input type="number" id="meses" required>
             <br>
             <button type="button" onclick="calcularRessarcimento()">Calcular</button>
