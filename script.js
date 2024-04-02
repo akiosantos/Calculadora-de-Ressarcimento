@@ -12,6 +12,9 @@ function formatarFaturamentoTotal() {
   faturamentoTotalInput.value = "R$ " + valor;
 }
 
+  // Chamar a função para calcular o ressarcimento
+  calcularRessarcimento();
+
 // Chama a função formatarFaturamentoTotal() sempre que o usuário digitar algo
 document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
 
