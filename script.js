@@ -36,9 +36,11 @@ function calcularRessarcimento() {
 
   var baseCalculo = faturamentoTotal * 0.012;
   
-  // Atualizar o elemento HTML com o valor da base de cálculo
-  var baseCalculoFormatado = baseCalculo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  
+
+// Formatar a base de cálculo com pontos a cada 3 dígitos
+  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+
   // Atualizar o elemento HTML com o valor da base de cálculo formatado
   document.getElementById("base-calculo").innerText = "Base de Cálculo: R$ " + baseCalculoFormatado;
   
