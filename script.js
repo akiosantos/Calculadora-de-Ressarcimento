@@ -23,8 +23,8 @@ var faturamentoTotalInput = atual.toLocaleString('pt-br',{style: 'currency', cur
 //sem R$
 var faturamentoTotalInput = atual.toLocaleString('pt-br', {minimumFractionDigits: 2});
 
-console.log(f);
-console.log(f2);
+console.log(faturamentoTotalInput);
+console.log(faturamentoTotalInput);
   
   
 // Adicionar ponto a cada 3 dígitos
