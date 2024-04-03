@@ -16,12 +16,6 @@ function formatarFaturamentoTotal() {
   } else {
     valor = '0,00';
   }
-
-//com R$
-var faturamentoTotalInput = atual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-
-console.log(faturamentoTotalInput);
-  
   
 // Adicionar ponto a cada 3 dígitos
 valor = valor.replace(/(\d)(?=(?:\d{3})+(?!\.?))/g, '$1.');
