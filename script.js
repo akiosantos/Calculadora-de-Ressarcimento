@@ -20,10 +20,6 @@ function formatarFaturamentoTotal() {
 //com R$
 var faturamentoTotalInput = atual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
 
-//sem R$
-var faturamentoTotalInput = atual.toLocaleString('pt-br', {minimumFractionDigits: 2});
-
-console.log(faturamentoTotalInput);
 console.log(faturamentoTotalInput);
   
   
