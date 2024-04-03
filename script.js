@@ -7,7 +7,7 @@ function formatarFaturamentoTotal() {
   valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
   // Verificar se o valor está vazio ou não é um número
-  if (valor === '' || isNaN(parseFloat(valor))) {/
+  if (valor === '' || isNaN(parseFloat(valor))) {
     valor = '0';
   }
   
@@ -49,9 +49,11 @@ function calcularRessarcimento() {
   var meses = parseInt(document.getElementById("meses").value);
 
   var baseCalculo = faturamentoTotal * 0.012;
+  
 
 // Formatar a base de cálculo com pontos a cada 3 dígitos
   var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
 
   // Atualizar o elemento HTML com o valor da base de cálculo formatado
   document.getElementById("base-calculo").innerText = "Base de Cálculo: R$ " + baseCalculoFormatado;
