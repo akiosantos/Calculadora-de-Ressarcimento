@@ -1,10 +1,13 @@
 // Função para formatar o valor do faturamento total
 function formatarFaturamentoTotal() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
-  var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
+  var valor = faturamentoTotalInput.value.trim().replace(/^R\$/, ''); // Remover o símbolo de "R$"
+  
+  // Remover todos os pontos e vírgulas
+  valor = valor.replace(/[.,\s]/g, '');
 
-// Remover todos os pontos e vírgulas
-  valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
+  // Remover zeros à esquerda
+  valor = valor.replace(/^0+/, '');
 
   // Adicionar vírgula antes dos últimos 2 dígitos
   if (valor.length > 2) {
@@ -15,7 +18,7 @@ function formatarFaturamentoTotal() {
     valor = '0,0' + valor;
   }
   
-// Adicionar ponto a cada 3 dígitos
+  // Adicionar ponto a cada 3 dígitos
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
   // Atualizar o valor no campo, removendo espaços extras no início
@@ -24,6 +27,7 @@ function formatarFaturamentoTotal() {
   // Chamar a função para calcular o ressarcimento
   calcularRessarcimento();
 }
+
 
 // Chama a função formatarFaturamentoTotal() sempre que o usuário digitar algo
 document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
