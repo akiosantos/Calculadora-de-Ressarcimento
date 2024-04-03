@@ -1,25 +1,21 @@
 // Função para formatar o valor do faturamento total
 function formatarFaturamentoTotal() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
-  var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
+  var valor = faturamentoTotalInput.value.trim().replace(/R\$/, ''); // Remover o símbolo de "R$"
 
-// Remover todos os pontos e vírgulas
-  valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
+  // Remover apenas pontos
+  valor = valor.replace(/\./g, '');
 
   // Verificar se o valor está vazio ou não é um número
   if (valor === '' || isNaN(parseFloat(valor))) {
     valor = '0';
   }
-  
-// Adicionar ponto a cada 3 dígitos
-  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-    // Adicionar vírgula e zeros caso necessário
-  if (valor.includes(',')) {
-    var partes = valor.split(',');
-    partes[1] = partes[1].padEnd(2, '0');
-    valor = partes.join(',');
-  } else {
+  // Adicionar vírgula a cada 3 dígitos
+  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+
+  // Adicionar zeros após a vírgula, se necessário
+  if (!valor.includes(',')) {
     valor += ',00';
   }
 
@@ -36,24 +32,22 @@ document.getElementById("faturamento-total").addEventListener("input", formatarF
 // Função para calcular o ressarcimento
 function calcularRessarcimento() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
-  var faturamentoTotalValue = faturamentoTotalInput.value.trim().replace('R$', '').replace(/\./g, '').trim();
-  
+  var faturamentoTotalValue = faturamentoTotalInput.value.trim().replace(/R\$/, '').replace(/\./g, '').trim();
+
   // Converter para número
   var faturamentoTotal = parseFloat(faturamentoTotalValue);
 
   if (isNaN(faturamentoTotal)) {
-      alert("Por favor, insira um valor válido para o Faturamento Total.");
-      return;
+    alert("Por favor, insira um valor válido para o Faturamento Total.");
+    return;
   }
 
   var meses = parseInt(document.getElementById("meses").value);
 
   var baseCalculo = faturamentoTotal * 0.012;
-  
 
-// Formatar a base de cálculo com pontos a cada 3 dígitos
-  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
+  // Formatar a base de cálculo com vírgula a cada 3 dígitos
+  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // Atualizar o elemento HTML com o valor da base de cálculo formatado
   document.getElementById("base-calculo").innerText = "Base de Cálculo: R$ " + baseCalculoFormatado;
