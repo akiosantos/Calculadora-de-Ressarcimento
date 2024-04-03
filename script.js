@@ -1,27 +1,31 @@
 // Função para formatar o valor do faturamento total
 function formatarFaturamentoTotal() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
-  var valor = faturamentoTotalInput.value.trim().replace(/R\$/, ''); // Remover o símbolo de "R$"
+  var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
 
 // Remover todos os pontos e vírgulas
   valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
-  // Verificar se o valor está vazio ou não é um número
-  if (valor === '' || isNaN(parseFloat(valor))) {
-    valor = '0';
+  // Adicionar vírgula antes dos últimos 2 dígitos
+  if (valor.length > 2) {
+    valor = valor.slice(0, -2) + ',' + valor.slice(-2);
+  } else if (valor.length === 2) {
+    valor = '0,' + valor;
+  } else if (valor.length === 1) {
+    valor = '0,0' + valor;
   }
-
-  // Adicionar vírgula a cada 3 dígitos após o ponto decimal
-  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  
+// Adicionar ponto a cada 3 dígitos
+  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
   // Atualizar o valor no campo, removendo espaços extras no início
-  faturamentoTotalInput.value = "R$ " + valor;
+  faturamentoTotalInput.value = "R$ " + valor.trimStart();
 
   // Chamar a função para calcular o ressarcimento
   calcularRessarcimento();
 }
 
-// Chama a função formatarFaturamentoTotal() quando o usuário digita algo no campo (evento input)
+// Chama a função formatarFaturamentoTotal() sempre que o usuário digitar algo
 document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
 
 
