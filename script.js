@@ -3,32 +3,35 @@ function formatarFaturamentoTotal() {
   var faturamentoTotalInput = document.getElementById("faturamento-total");
   var valor = faturamentoTotalInput.value.trim().replace('R$', ''); // Remover o símbolo de "R$"
 
-// Remover todos os pontos e espaços
-  valor = valor.replace(/[.,\s]/g, '');
+// Remover todos os pontos e vírgulas
+  valor = valor.replace(/[.,\s]/g, ''); // Adicionado \s para remover espaços
 
-  // Adicionar vírgula antes dos últimos 2 dígitos
-  if (valor.length > 2) {
-    valor = valor.slice(0, -2) + ',' + valor.slice(-2);
-  } else if (valor.length === 2) {
-    valor = '0,' + valor;
-  } else if (valor.length === 1) {
-    valor = '0,0' + valor;
-  } else {
-    valor = '0,00';
+  // Verificar se o valor está vazio ou não é um número
+  if (valor === '' || isNaN(parseFloat(valor))) {
+    valor = '0';
   }
   
 // Adicionar ponto a cada 3 dígitos
-valor = valor.replace(/(\d)(?=(?:\d{3})+(?!\.?))/g, '$1.');
+  valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-  // Atualizar o valor no campo
+    // Adicionar vírgula e zeros caso necessário
+  if (valor.includes(',')) {
+    var partes = valor.split(',');
+    partes[1] = partes[1].padEnd(2, '0');
+    valor = partes.join(',');
+  } else {
+    valor += ',00';
+  }
+
+  // Atualizar o valor no campo, removendo espaços extras no início
   faturamentoTotalInput.value = "R$ " + valor;
 
   // Chamar a função para calcular o ressarcimento
   calcularRessarcimento();
 }
 
-// Chama a função formatarFaturamentoTotal() sempre que o usuário digitar algo
-document.getElementById("faturamento-total").addEventListener("blur", formatarFaturamentoTotal);
+// Chama a função formatarFaturamentoTotal() quando o usuário digita algo no campo (evento input)
+document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
 
 // Função para calcular o ressarcimento
 function calcularRessarcimento() {
@@ -49,7 +52,7 @@ function calcularRessarcimento() {
   
 
 // Formatar a base de cálculo com pontos a cada 3 dígitos
-  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  var baseCalculoFormatado = baseCalculo.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 
   // Atualizar o elemento HTML com o valor da base de cálculo formatado
