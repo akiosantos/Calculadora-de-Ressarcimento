@@ -11,7 +11,7 @@ function formatarFaturamentoTotal() {
     valor = '0';
   }
 
-  // Adicionar vírgula a cada 3 dígitos
+  // Adicionar vírgula a cada 3 dígitos após o ponto decimal
   valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
   // Atualizar o valor no campo, removendo espaços extras no início
@@ -23,6 +23,10 @@ function formatarFaturamentoTotal() {
 
 // Chama a função formatarFaturamentoTotal() quando o usuário digita algo no campo (evento input)
 document.getElementById("faturamento-total").addEventListener("input", formatarFaturamentoTotal);
+
+
+
+
 
 
 
